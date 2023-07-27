@@ -1,0 +1,47 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 100px;
+}
+.title {
+    color: var(---primary);
+    font-size: 2rem;
+    font-weight: 700;
+    text-decoration: none;
+    font-family: 'Titillium Web', sans-serif;
+}
+.option {
+}
+.btn-home {
+    font-size: 1rem;
+    margin-right: 15px;
+    text-decoration: none;
+    color: rgb(173, 167, 167);
+    font-family: 'Titillium Web', sans-serif;
+
+    &.active {
+        color: black;
+    }
+}
+.btn-signin {
+    font-size: 1rem;
+    text-decoration: none;
+    margin-right: 15px;
+    color: rgb(173, 167, 167);
+    font-family: 'Titillium Web', sans-serif;
+
+    &.active {
+        color: black;
+    }
+}
+.btn-signup {
+    font-size: 1rem;
+    text-decoration: none;
+    color: rgb(173, 167, 167);
+    font-family: 'Titillium Web', sans-serif;
+
+    &.active {
+        color: black;
+    }
+}
