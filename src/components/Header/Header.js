@@ -33,7 +33,7 @@ function Header(props) {
                         className={(nav) =>
                             cx('btn-signup', { active: nav.isActive })
                         }
-                        to="/signUp"
+                        to="/signup"
                     >
                         Sign up
                     </NavLink>
