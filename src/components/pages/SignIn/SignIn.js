@@ -12,18 +12,30 @@ function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const [errorMessage, setErrorMessage] = useState(false);
+
     const handleSignin = async () => {
-        let res = await signinApi(email, password);
-        console.log('check res', res);
-        if (res && res.token) {
-            localStorage.setItem('token', res.token);
-            navigate('/');
-        } else {
-            // error
-            if (res && res.data) {
-                alert('error', res.data);
+        try {
+            let res = await signinApi(email, password);
+
+            if (res && res.user.token) {
+                localStorage.setItem('token', res.user.token);
+                navigate('/');
+                setErrorMessage(false);
             }
+        } catch (err) {
+            console.log(err.data.errors);
+            setEmail('');
+            setPassword('');
+            setErrorMessage(true);
         }
+
+        // else {
+        //     // error
+        //     if (res && res.status === 403) {
+        //         setErrorMessage(true);
+        //     }
+        // }
     };
 
     return (
@@ -33,6 +45,12 @@ function SignIn() {
                 <NavLink className={cx('content')} to="/signup">
                     Need an account?
                 </NavLink>
+
+                {errorMessage && (
+                    <b className={cx('title-error')}>
+                        * Email or password invalid!
+                    </b>
+                )}
                 <input
                     className={cx('text-email')}
                     placeholder="Email"

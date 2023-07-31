@@ -31,7 +31,7 @@ instance.interceptors.response.use(
             // Something happened in setting up the request that triggered an Error
             console.log('Error', error.message);
         }
-        return res;
+        throw res;
         // return Promise.reject(error);
     },
 );

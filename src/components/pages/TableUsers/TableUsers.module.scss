@@ -7,6 +7,14 @@
         inset 0 -8px 8px -8px rgba(0, 0, 0, 0.3);
 }
 
+.btn-more {
+    margin-top: 10px;
+    color: #5cb85c;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #5cb85c;
+}
+
 .title {
     font-size: 3.5rem;
     font-weight: 700;
@@ -18,6 +26,130 @@
     font-size: 2rem;
     font-weight: 200;
     font-family: 'Titillium Web', sans-serif;
-
     color: white;
+}
+
+.body {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    line-height: 2;
+}
+
+.list-articles {
+    max-width: 70%;
+}
+
+.list {
+    padding-top: 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.avatar {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+
+.user-name {
+    color: #5cb85c;
+    font-weight: 500;
+}
+
+.btn-like {
+    display: flex;
+    align-items: center;
+    width: 40px;
+    height: 17px;
+    color: #5cb85c;
+    background-color: transparent;
+    border: 1px solid #5cb85c;
+    border-radius: 2px;
+
+    &:hover {
+        color: white;
+        background-color: #5cb85c;
+    }
+}
+
+.like {
+    font-size: 0.8rem;
+    margin-left: 3px;
+}
+
+.title-articles {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.content-articles {
+    color: #999;
+    font-size: 1rem;
+}
+
+.bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-read {
+    font-size: 0.8rem;
+    color: #999;
+    border: none;
+    background-color: transparent;
+}
+
+.tags {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 5px;
+}
+.tag {
+    min-width: 20px;
+    font-size: 0.7rem;
+    color: #999;
+    border: 1px solid #999;
+    padding: 0 3px;
+    border-radius: 10px;
+}
+
+.list-tags-popular {
+    width: 16%;
+    height: 110px;
+    margin-top: 10px;
+    background: #f3f3f3;
+}
+
+.title-tags {
+    margin-left: 5px;
+}
+
+.tags-popular {
+    display: inline-flex;
+}
+
+.tag-popular {
+    text-decoration: none;
+    display: inline-block;
+    align-items: center;
+    color: #fff;
+    font-size: 0.7rem;
+    margin-left: 5px;
+
+    margin-bottom: 0.1rem;
+    padding: 0 4px;
+    border-radius: 10px;
+    background-color: #818a91;
+
+    &:hover {
+        background-color: #687077;
+    }
 }
