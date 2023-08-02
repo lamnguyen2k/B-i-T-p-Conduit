@@ -4,8 +4,8 @@ const signinApi = (email, password) => {
     return axios.post('/api/users/login', { user: { email, password } });
 };
 
-const callApiArticles = (articles) => {
-    return axios.get('/api/articles', { articles });
+const callApiArticles = (limit, offset) => {
+    return axios.get(`/api/articles?offset=${offset}&limit=${limit}`);
 };
 
 const callApiListTags = (tags) => {
