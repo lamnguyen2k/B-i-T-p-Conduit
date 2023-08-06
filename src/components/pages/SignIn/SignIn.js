@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './SignIn.module.scss';
 import { Container } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { signinApi } from '../../../service/UseService';
 
 const cx = classNames.bind(styles);
@@ -11,8 +11,14 @@ function SignIn() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errors, setErrors] = useState([]);
 
-    const [errorMessage, setErrorMessage] = useState(false);
+    useEffect(() => {
+        let token = localStorage.getItem('token');
+        if (token) {
+            navigate('/');
+        }
+    }, []);
 
     const handleSignin = async () => {
         try {
@@ -21,43 +27,51 @@ function SignIn() {
             if (res && res.user.token) {
                 localStorage.setItem('token', res.user.token);
                 navigate('/');
-                setErrorMessage(false);
             }
         } catch (err) {
-            console.log(err.data.errors);
-            setEmail('');
-            setPassword('');
-            setErrorMessage(true);
-        }
+            const keys = Object.keys(err.data.errors);
+            const arr = [];
+            for (let i = 0; i < keys.length; i++) {
+                const key = keys[i];
 
-        // else {
-        //     // error
-        //     if (res && res.status === 403) {
-        //         setErrorMessage(true);
-        //     }
-        // }
+                const values = err.data.errors[key];
+
+                for (let j = 0; j < values.length; j++) {
+                    const value = values[j];
+
+                    arr.push(`${key} ${value}`);
+                }
+            }
+
+            setErrors(arr);
+            setPassword('');
+            setEmail('');
+        }
     };
 
     return (
         <Container>
             <div className={cx('wrapper')}>
-                <div className={cx('title')}>Sign in</div>
+                <div className={cx('title')}>Sign in (lamnguyen@gmail.com)</div>
                 <NavLink className={cx('content')} to="/signup">
                     Need an account?
                 </NavLink>
+                <ul>
+                    {errors.map((item, index) => {
+                        return (
+                            <li className={cx('errors')} key={index}>
+                                {item}
+                            </li>
+                        );
+                    })}
+                </ul>
 
-                {errorMessage && (
-                    <b className={cx('title-error')}>
-                        * Email or password invalid!
-                    </b>
-                )}
                 <input
                     className={cx('text-email')}
                     placeholder="Email"
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                 />
-
                 <input
                     type="password"
                     className={cx('text-password')}

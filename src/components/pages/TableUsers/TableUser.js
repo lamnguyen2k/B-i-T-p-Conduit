@@ -116,12 +116,12 @@ function TableUsers() {
                                                                 className={cx(
                                                                     'tags',
                                                                 )}
+                                                                key={index}
                                                             >
                                                                 <div
                                                                     className={cx(
                                                                         'tag',
                                                                     )}
-                                                                    key={index}
                                                                 >
                                                                     {item}
                                                                 </div>
@@ -141,11 +141,13 @@ function TableUsers() {
                         <div>
                             {listTags.map((item, index) => {
                                 return (
-                                    <div className={cx('tags-popular')}>
+                                    <div
+                                        className={cx('tags-popular')}
+                                        key={index}
+                                    >
                                         <a
                                             href="/"
                                             className={cx('tag-popular')}
-                                            key={index}
                                         >
                                             {item}
                                         </a>

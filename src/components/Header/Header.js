@@ -37,6 +37,36 @@ function Header(props) {
                     >
                         Sign up
                     </NavLink>
+                    <NavLink
+                        className={(nav) =>
+                            cx('btn-new-articles', { active: nav.isActive })
+                        }
+                        to="/newarticles"
+                    >
+                        <i
+                            className={cx(
+                                'fa-regular fa-pen-to-square icon-new-articles',
+                            )}
+                        ></i>
+                        New Articles
+                    </NavLink>
+                    <NavLink
+                        className={(nav) =>
+                            cx('btn-setting', { active: nav.isActive })
+                        }
+                        to="/setting"
+                    >
+                        <i className="fa-solid fa-gear"></i>
+                        Setting
+                    </NavLink>
+                    <NavLink
+                        className={(nav) =>
+                            cx('btn-profile', { active: nav.isActive })
+                        }
+                        to="/profile"
+                    >
+                        lam
+                    </NavLink>
                 </div>
             </div>
         </Container>

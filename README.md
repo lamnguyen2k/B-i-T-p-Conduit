@@ -68,3 +68,28 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+const errors = {
+"1": [1, 2, 3],
+"2": [1, 2, 3],
+"3": [1, 2, 3],
+'1000': [1, 2 ,3]
+}
+
+// láy tất cả các keys
+
+const keys = Object.keys(errors);
+console.log("🚀 ~ file: test.js:11 ~ keys:", keys)
+keys = [ "1", "2", "3", "1000" ]
+
+// lặp danh sách key từ key => value trong object errors
+
+for (let i = 0; i < keys.length; i++) {
+const key = keys[i]; // mảng các keys
+const values = errors[key] // object lỗi
+// values mảng các mesgae cảu 1 key
+for (let j = 0; j < values.length; j++) {
+const value = values[j];
+console.log(${key} ${value});
+}
+}

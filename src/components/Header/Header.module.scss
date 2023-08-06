@@ -38,6 +38,42 @@
 .btn-signup {
     font-size: 1rem;
     text-decoration: none;
+    margin-right: 15px;
+    color: rgb(173, 167, 167);
+    font-family: 'Titillium Web', sans-serif;
+
+    &.active {
+        color: black;
+    }
+}
+
+.btn-new-articles {
+    font-size: 1rem;
+    text-decoration: none;
+    margin-right: 15px;
+    color: rgb(173, 167, 167);
+    font-family: 'Titillium Web', sans-serif;
+
+    &.active {
+        color: black;
+    }
+}
+
+.btn-setting {
+    font-size: 1rem;
+    text-decoration: none;
+    margin-right: 15px;
+    color: rgb(173, 167, 167);
+    font-family: 'Titillium Web', sans-serif;
+
+    &.active {
+        color: black;
+    }
+}
+
+.btn-profile {
+    font-size: 1rem;
+    text-decoration: none;
     color: rgb(173, 167, 167);
     font-family: 'Titillium Web', sans-serif;
 
