@@ -4,6 +4,8 @@ import { Container } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { signinApi } from '../../../service/UseService';
+import { useContext } from 'react';
+import { UserContext } from '../../../context/UserContext';
 
 const cx = classNames.bind(styles);
 
@@ -12,6 +14,8 @@ function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
+
+    const { loginContext } = useContext(UserContext);
 
     useEffect(() => {
         let token = localStorage.getItem('token');
@@ -25,7 +29,7 @@ function SignIn() {
             let res = await signinApi(email, password);
 
             if (res && res.user.token) {
-                localStorage.setItem('token', res.user.token);
+                loginContext(res.user.username, res.user.token);
                 navigate('/');
             }
         } catch (err) {
@@ -46,6 +50,37 @@ function SignIn() {
             setErrors(arr);
             setPassword('');
             setEmail('');
+        }
+    };
+
+    const handleEnter = async (e) => {
+        if (e.key === 'Enter') {
+            try {
+                let res = await signinApi(email, password);
+
+                if (res && res.user.token) {
+                    loginContext(res.user.username, res.user.token);
+                    navigate('/');
+                }
+            } catch (err) {
+                const keys = Object.keys(err.data.errors);
+                const arr = [];
+                for (let i = 0; i < keys.length; i++) {
+                    const key = keys[i];
+
+                    const values = err.data.errors[key];
+
+                    for (let j = 0; j < values.length; j++) {
+                        const value = values[j];
+
+                        arr.push(`${key} ${value}`);
+                    }
+                }
+
+                setErrors(arr);
+                setPassword('');
+                setEmail('');
+            }
         }
     };
 
@@ -71,6 +106,7 @@ function SignIn() {
                     placeholder="Email"
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
+                    onKeyDown={handleEnter}
                 />
                 <input
                     type="password"
@@ -78,6 +114,7 @@ function SignIn() {
                     placeholder="Password"
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
+                    onKeyDown={handleEnter}
                 />
                 <button
                     className={

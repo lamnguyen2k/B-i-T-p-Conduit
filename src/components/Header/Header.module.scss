@@ -59,6 +59,10 @@
     }
 }
 
+.new-article {
+    margin-left: 3px;
+}
+
 .btn-setting {
     font-size: 1rem;
     text-decoration: none;
@@ -71,6 +75,10 @@
     }
 }
 
+.setting {
+    margin-left: 3px;
+}
+
 .btn-profile {
     font-size: 1rem;
     text-decoration: none;
@@ -80,4 +88,8 @@
     &.active {
         color: black;
     }
+}
+
+.profile {
+    margin-left: 3px;
 }

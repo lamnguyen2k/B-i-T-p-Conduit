@@ -32,7 +32,14 @@ function NewArticles() {
 
     const onSubmit = (data) => {
         setTagArticle((prev) => [...prev, data.tag]);
-        setTagValue('');
+    };
+
+    const handleDeleteTag = (index) => {
+        setTagArticle((prev) => {
+            const newTag = [...prev];
+            newTag.splice(index, 1);
+            return newTag;
+        });
     };
 
     return (
@@ -66,23 +73,26 @@ function NewArticles() {
                     placeholder="Enter tags"
                     onChange={(e) => e.target.value}
                 />
-                <div className={cx('list-tags')}>
-                    <ul className={cx('wrapper-tags')}>
-                        {tagArticle.map((tag, index) => (
-                            <li key={index}>
-                                <span className={cx('submit-tag')}>
-                                    <i class="fa-solid fa-xmark"></i>
-                                    {tag}
-                                </span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
 
                 <button className={cx('btn-create-article')}>
                     Publish Article
                 </button>
             </form>
+            <div className={cx('list-tags')}>
+                <ul className={cx('wrapper-tags')}>
+                    {tagArticle.map((tag, index) => (
+                        <li key={index} className={cx('submit-tag')}>
+                            <button
+                                className={cx('btn-close-tag')}
+                                onClick={() => handleDeleteTag(index)}
+                            >
+                                <i className="fa-solid fa-xmark"></i>
+                            </button>
+                            {tag}
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </Container>
     );
 }

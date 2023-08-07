@@ -3,7 +3,8 @@ import styles from './SignUp.module.scss';
 import { signupApi } from '../../../service/UseService';
 import { Container } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { UserContext } from '../../../context/UserContext';
 
 const cx = classNames.bind(styles);
 
@@ -14,15 +15,23 @@ function SignUp() {
     const [email, setEmail] = useState('');
     const [errors, setErrors] = useState([]);
 
+    const { signupContext } = useContext(UserContext);
+
+    useEffect(() => {
+        let token = localStorage.getItem('token');
+        if (token) {
+            navigate('/');
+        }
+    }, []);
+
     const handleSignup = async () => {
         try {
             let res = await signupApi(email, password, userName);
             if (res && res.user.token) {
-                localStorage.setItem('token', res.user.token);
+                signupContext(res.user.username, res.user.token);
                 navigate('/');
             }
         } catch (err) {
-            console.log('🚀 ~ file: SignUp.js:26 ~ handleSignup ~ err:', err);
             const keys = Object.keys(err.data.errors);
             const arr = [];
 
